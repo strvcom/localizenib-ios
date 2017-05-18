@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/strvcom/localizenib-ios'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Jindra Dolezy' => 'jindra.dolezy@strv.com' }
-  s.source           = { :git => '#{s.homepage}.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/strvcom/localizenib-ios.git', :tag => '1.0' }
 
   s.ios.deployment_target = '9.0'
 
