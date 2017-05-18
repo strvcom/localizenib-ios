@@ -42,6 +42,18 @@ Following example takes all passed-in keys and simply returns their uppercased v
 LocalizeNIB.instance.stringProvider = { $0.uppercased() }
 ```
 
+### Localizing custom components
+
+You can provide custom localization to any object by implementing `Localizable` protocol. Extensions for UIKit classes are provided by default.
+
+```swift
+extension UILabel: Localizable {
+    open func localize(provider: LocalizedStringProvider) throws {
+        text = text.flatMap { provider($0) }
+    }
+}
+```
+
 ### Catch-all block
 
 You can customize localization process or exclude some objects from localization by providing `LocalizeNIB.instance.localizeAll` block. This block is called for every object being localized. You can skip localization for this object if you return true in this block.
