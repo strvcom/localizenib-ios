@@ -1,0 +1,14 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'LocalizeNIB_Example' do
+  pod 'SwiftLint'
+  pod 'LocalizeNIB', :path => '../'
+
+  target 'LocalizeNIB_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

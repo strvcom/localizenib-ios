@@ -1,0 +1,24 @@
+/* 
+  Localized.strings
+  LocalizeNIB
+
+  Created by Jindra Dolezy on 11/10/16.
+  Copyright © 2016 STRV. All rights reserved.
+*/
+
+"navbar" = "Localized title";
+
+"barbutton" = "Next screen";
+"backbutton" = "Localized back";
+
+"label" = "Localized label";
+
+"button" = "Localized regular button";
+"button2" = "Localized highlight state";
+
+"segmented" = "Localized segment";
+"segmented2" = "Another segment";
+
+
+"tab1" = "Localized item 1";
+"tab2" = "Localized item 2";
