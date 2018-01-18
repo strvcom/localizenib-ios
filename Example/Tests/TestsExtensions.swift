@@ -58,4 +58,17 @@ class TestsExtensions: XCTestCase {
         XCTAssertTrue(cell.localizables.isEmpty)
     }
     
+    func testStringExt() {
+        var called = false
+        LocalizeNIB.instance.stringProvider = { string in
+            called = true
+            XCTAssertEqual(string, "test string")
+            return "localized test string"
+        }
+        
+        let result = "test string".localized
+        XCTAssertTrue(called, "String provider not called")
+        XCTAssertEqual(result, "localized test string")
+    }
+    
 }

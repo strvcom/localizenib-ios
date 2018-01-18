@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     override init() {
         
         // localizeAll block intercepts all localization attempts
-        LocalizeNIB.instance.localizeAll = { object, stringProvider in
+        localizeNIB.localizeAll = { object, stringProvider in
             if let label = object as? UILabel, label.text == "localizeAll" {
                 label.text = "Caught by localizeAll block"
                 return true
@@ -29,10 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // enable debug mode
-        LocalizeNIB.instance.debugMode = true
+        localizeNIB.debugMode = true
         
         // uncomment following line to enable custom stringProvider
-        // LocalizeNIB.instance.stringProvider = { $0.uppercased() }
+        // localizeNIB.stringProvider = { $0.uppercased() }
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

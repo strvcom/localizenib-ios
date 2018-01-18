@@ -88,52 +88,51 @@ open class LocalizeNIB {
     }
 }
 
+/// Shortuct for LocalizeNIB.instance
+public var localizeNIB = LocalizeNIB.instance
+
 
 // ------------------------------------
 // MARK: - UIKit extensions
 
+func localizeInternal(_ items: [AnyObject], context: AnyObject) {
+    do {
+        try LocalizeNIB.instance.localize(items, context: "\(context)")
+    } catch {
+        assertionFailure("\(context): Failed to localize values \(items) with error \(error)")
+    }
+}
+
 
 extension UIViewController {
-    @IBOutlet public var localizables: [AnyObject] {
+    @IBOutlet open var localizables: [AnyObject] {
         get {
             return []
         }
         set {
-            do {
-                try LocalizeNIB.instance.localize(newValue, context: "\(self)")
-            } catch {
-                assertionFailure("\(self): Failed to localize values \(newValue) with error \(error)")
-            }
+            localizeInternal(newValue, context: self)
         }
     }
 }
 
 extension UITableViewCell {
-    @IBOutlet public var localizables: [AnyObject] {
+    @IBOutlet open var localizables: [AnyObject] {
         get {
             return []
         }
         set {
-            do {
-                try LocalizeNIB.instance.localize(newValue, context: "\(self)")
-            } catch {
-                assertionFailure("\(self): Failed to localize values \(newValue) with error \(error)")
-            }
+            localizeInternal(newValue, context: self)
         }
     }
 }
 
 extension UICollectionViewCell {
-    @IBOutlet public var localizables: [AnyObject] {
+    @IBOutlet open var localizables: [AnyObject] {
         get {
             return []
         }
         set {
-            do {
-                try LocalizeNIB.instance.localize(newValue, context: "\(self)")
-            } catch {
-                assertionFailure("\(self): Failed to localize values \(newValue) with error \(error)")
-            }
+            localizeInternal(newValue, context: self)
         }
     }
 }
@@ -240,4 +239,16 @@ extension UIViewController: Localizable {
             self.title = provider(title)
         }
     }
+}
+
+
+// ------------------------------------
+// MARK: - String extension
+
+extension String {
+    
+    public var localized: String {
+        return LocalizeNIB.instance.localize(self)
+    }
+    
 }
