@@ -26,20 +26,28 @@ LocalizeNIB uses `NSLocalizedString` by default. If you have your Localizable.st
 
 ![Adding to outlet collection](Docs/outlet.png)
 
+### String extension
+
+If you want to localize `String` objects in the same way as you UI objects, you can use `String.localized` property. This property uses same shared instance and `LocalizedStringProvider`.
+
+```swift
+"localize me!".localized
+```
+
 ### Debug mode
 
-Setting `LocalizeNIB.instance.debugMode` to true will enable debug mode. LocalizeNIB will log unknown string keys and objects that either failed localization or do not support localization at all. Logging unknown keys works only 
+Setting `localizeNIB.debugMode` to true will enable debug mode. LocalizeNIB will log unknown string keys and objects that either failed localization or do not support localization at all. Logging unknown keys works only with default string provider.
 
-If you use your own logging solution you integrate it with LocalizeNIB by providing `LocalizeNIB.instance.debugBlock`.
+If you use your own logging solution you can integrate it with LocalizeNIB by providing `localizeNIB.debugBlock`.
 
 ### Customizing localized strings
 
-You can set `LocalizeNIB.instance.stringProvider` block and provide custom localized strings. This block will be called quite a lot, so it should return quickly.
+You can set `localizeNIB.stringProvider` block and provide custom localized strings. This block will be called quite a lot, so it should return quickly.
 
 Following example takes all passed-in keys and simply returns their uppercased version.
 
 ```swift
-LocalizeNIB.instance.stringProvider = { $0.uppercased() }
+localizeNIB.stringProvider = { $0.uppercased() }
 ```
 
 ### Localizing custom components
@@ -56,12 +64,12 @@ extension UILabel: Localizable {
 
 ### Catch-all block
 
-You can customize localization process or exclude some objects from localization by providing `LocalizeNIB.instance.localizeAll` block. This block is called for every object being localized. You can skip localization for this object if you return true in this block.
+You can customize localization process or exclude some objects from localization by providing `localizeNIB.localizeAll` block. This block is called for every object being localized. You can skip localization for this object if you return true in this block.
 
 Following example takes all `UILabel` components with `localizeAll` text, provides custom text for it.
 
 ```swift
-LocalizeNIB.instance.localizeAll = { object, stringProvider in
+localizeNIB.localizeAll = { object, stringProvider in
     if let label = object as? UILabel, label.text == "localizeAll" {
         label.text = "Caught by localizeAll block"
         return true                
@@ -74,7 +82,11 @@ LocalizeNIB.instance.localizeAll = { object, stringProvider in
 
 ### Using LocalizeNIB with MainInterface
 
-When customizing behaviour of `LocalizeNIB.instance` and using default storyboard, you must do all customization in the init method of your `UIApplicationDelegate` otherwise the storyboard will be localized before your customizations. See [AppDelegate in example project](Example/LocalizeNIB/AppDelegate.swift) for reference.
+When customizing behaviour of LocalizeNIB and using default storyboard, you must do all customization in the init method of your `UIApplicationDelegate` otherwise the storyboard will be localized before your customizations. See [AppDelegate in example project](Example/LocalizeNIB/AppDelegate.swift) for reference.
+
+### localizeNIB global variable
+
+`localizeNIB` global variable is simply a shortcut for `LocalizeNIB.instance` and references the same object. If you do not like global variables, you can simply use `LocalizableNIB.instance`.
 
 ## Example
 
