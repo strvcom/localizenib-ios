@@ -14,12 +14,12 @@ class TestsExtensions: XCTestCase {
             return "localized"
         }
 
-        let vc = UIViewController()
-        vc.localizables = [localizable]
+        let viewController = UIViewController()
+        viewController.localizables = [localizable]
 
         XCTAssertTrue(called, "String provider not called")
         XCTAssertEqual(localizable.text, "localized")
-        XCTAssertTrue(vc.localizables.isEmpty)
+        XCTAssertTrue(viewController.localizables.isEmpty)
     }
 
     func testTableViewCellExt() {

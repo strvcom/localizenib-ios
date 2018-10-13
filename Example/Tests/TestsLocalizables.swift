@@ -130,11 +130,11 @@ class TestsLocalizables: XCTestCase {
     }
 
     func testViewController() {
-        let vc = UIViewController()
-        vc.title = "s1"
+        let viewController = UIViewController()
+        viewController.title = "s1"
 
-        helperLocalize(vc)
-        XCTAssertEqual(vc.title, "l1")
+        helperLocalize(viewController)
+        XCTAssertEqual(viewController.title, "l1")
     }
 
 }

@@ -13,7 +13,8 @@ import LocalizeNIB
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
-    // If you want to use LocalizeNIB for Main Interface storyboard you need to customize it in the init() method of the AppDelegate
+    // If you want to use LocalizeNIB for Main Interface storyboard
+    // you need to customize it in the init() method of the AppDelegate
     override init() {
 
         // localizeAll block intercepts all localization attempts
@@ -35,7 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // localizeNIB.stringProvider = { $0.uppercased() }
     }
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true
     }
 

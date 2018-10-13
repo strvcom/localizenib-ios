@@ -104,7 +104,8 @@ class Tests: XCTestCase {
     func testDefaultProvider() {
         localizeNIB.debugBlock = { _ in XCTFail("Debug block should not be called") }
 
-        XCTAssertEqual(localizeNIB.localize("label"), "Localized label") // this uses Localizable.strings from main app bundle
+        /// This uses Localizable.strings from main app bundle
+        XCTAssertEqual(localizeNIB.localize("label"), "Localized label")
         XCTAssertEqual(localizeNIB.localize("not existing"), "not existing")
     }
 }
