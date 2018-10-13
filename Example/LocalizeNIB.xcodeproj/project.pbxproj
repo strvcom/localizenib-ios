@@ -39,7 +39,7 @@
 		607FACE51AFB9204008FA782 /* LocalizeNIB_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalizeNIB_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		72F6FAEC0A3C1F55A1EE3079 /* LocalizeNIB.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LocalizeNIB.podspec; path = ../LocalizeNIB.podspec; sourceTree = "<group>"; };
+		72F6FAEC0A3C1F55A1EE3079 /* LocalizeNIB.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LocalizeNIB.podspec; path = ../LocalizeNIB.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		94A78F4A1EBC8F6300F4CE6D /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		94A78F4B1EBC8F6300F4CE6D /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		94A78F4C1EBC8F6300F4CE6D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -175,7 +175,6 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				8F565F79A35C0B7F90E05706 /* [CP] Embed Pods Frameworks */,
-				16A9E5C263D1FD4A68ACB3B4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -194,8 +193,6 @@
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				874229BA16B8B96BA4B8772B /* [CP] Embed Pods Frameworks */,
-				48455CBB545057EA35DBD09C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -267,51 +264,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		16A9E5C263D1FD4A68ACB3B4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LocalizeNIB_Example/Pods-LocalizeNIB_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		48455CBB545057EA35DBD09C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LocalizeNIB_Tests/Pods-LocalizeNIB_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		874229BA16B8B96BA4B8772B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LocalizeNIB_Tests/Pods-LocalizeNIB_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8D30B959C5CF60AF4FC61C93 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -336,7 +288,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-LocalizeNIB_Example/Pods-LocalizeNIB_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-LocalizeNIB_Example/Pods-LocalizeNIB_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/LocalizeNIB/LocalizeNIB.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -345,7 +297,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LocalizeNIB_Example/Pods-LocalizeNIB_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LocalizeNIB_Example/Pods-LocalizeNIB_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		94A78F491EBC89E400F4CE6D /* SwiftLint */ = {
