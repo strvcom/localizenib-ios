@@ -45,13 +45,19 @@ open class LocalizeNIB {
     /// This block is called for each debug message. The default implementation simply calls print.
     open var debugBlock: ((String) -> Void) = { print($0) }
 
+    /// A special string to report that some value for key is missing
+    open var missingKeyIdentifier: String { return "!!!" }
+
     fileprivate lazy var defaultStringProvider: LocalizedStringProvider = {
         return { [weak self] string in
+            guard let strongSelf = self else {
+                return String()
+            }
             /// Will return !!! if string is not found in string table
-            let result = NSLocalizedString(string, value: "!!!", comment: "")
-            if result == "!!!" {
-                if self?.debugMode == true {
-                    self?.debugBlock("Missing key '\(string)'")
+            let result = NSLocalizedString(string, value: strongSelf.missingKeyIdentifier, comment: "")
+            if result == strongSelf.missingKeyIdentifier {
+                if strongSelf.debugMode {
+                    strongSelf.debugBlock("Missing key '\(string)'")
                 }
                 return string
             } else {
