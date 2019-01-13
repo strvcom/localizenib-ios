@@ -52,12 +52,9 @@ open class LocalizeNIB {
         return { [weak self] string in
             /// Will return !!! if string is not found in string table
             let result = NSLocalizedString(string, value: LocalizeNIB.missingKeyIdentifier, comment: "")
-            guard let strongSelf = self else {
-                return result
-            }
             if result == LocalizeNIB.missingKeyIdentifier {
-                if strongSelf.debugMode {
-                    strongSelf.debugBlock("Missing key '\(string)'")
+                if self?.debugMode == true {
+                    self?.debugBlock("Missing key '\(string)'")
                 }
                 return string
             } else {
