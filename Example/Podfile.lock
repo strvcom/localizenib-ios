@@ -15,9 +15,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LocalizeNIB: 54724c091d181c72cbba4da525a5cfd8fa5089cb
+  LocalizeNIB: 1c86f364dbef8e69bb931f194c853c915d7460fa
   SwiftLint: bfa7ca7b4d170cfaf0d236ca3ffd969e88a2f002
 
 PODFILE CHECKSUM: 5da31c111c6bb7b201ceeff38361dee055a79d8b
 
-COCOAPODS: 1.6.0.beta.2
+COCOAPODS: 1.5.3

@@ -288,7 +288,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LocalizeNIB_Example/Pods-LocalizeNIB_Example-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-LocalizeNIB_Example/Pods-LocalizeNIB_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/LocalizeNIB/LocalizeNIB.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -297,7 +297,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LocalizeNIB_Example/Pods-LocalizeNIB_Example-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LocalizeNIB_Example/Pods-LocalizeNIB_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		94A78F491EBC89E400F4CE6D /* SwiftLint */ = {
