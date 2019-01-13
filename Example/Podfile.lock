@@ -1,6 +1,6 @@
 PODS:
   - LocalizeNIB (1.1)
-  - SwiftLint (0.27.0)
+  - SwiftLint (0.29.3)
 
 DEPENDENCIES:
   - LocalizeNIB (from `../`)
@@ -15,9 +15,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LocalizeNIB: 669c469b957cb8eb94a48f730c39fff3b448f1bf
-  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
+  LocalizeNIB: 54724c091d181c72cbba4da525a5cfd8fa5089cb
+  SwiftLint: bfa7ca7b4d170cfaf0d236ca3ffd969e88a2f002
 
 PODFILE CHECKSUM: 5da31c111c6bb7b201ceeff38361dee055a79d8b
 
-COCOAPODS: 1.6.0.beta.1
+COCOAPODS: 1.6.0.beta.2
