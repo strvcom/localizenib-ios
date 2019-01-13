@@ -169,7 +169,7 @@ extension UITextField: Localizable {
 }
 
 extension UIButton: Localizable {
-    open func localize(provider: LocalizedStringProvider, state: UIControlState, normalTitle: String?) {
+    open func localize(provider: LocalizedStringProvider, state: UIControl.State, normalTitle: String?) {
         if let title = title(for: state), normalTitle == nil || title != normalTitle {
             setTitle(provider(title), for: state)
         }
