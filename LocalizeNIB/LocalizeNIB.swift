@@ -12,10 +12,12 @@ import UIKit
 /// Used for providing localized strings. Basically maps one string to another.
 public typealias LocalizedStringProvider = (String) -> String
 
-/// Catch-all block that can localize object via provided LocalizedStringProvider and returns true if there is no need to continue with localization, false otherwise
+/// Catch-all block that can localize object via provided LocalizedStringProvider and returns true
+/// if there is no need to continue with localization, false otherwise
 public typealias LocalizerBlock = (AnyObject, LocalizedStringProvider) -> Bool
 
-/// Implement this protocol to provide localization capability. Use passed in LocalizedStringProvider to get localized strings.
+/// Implement this protocol to provide localization capability.
+/// Use passed in LocalizedStringProvider to get localized strings.
 public protocol Localizable {
     func localize(provider: LocalizedStringProvider) throws
 }
@@ -27,24 +29,30 @@ public protocol Localizable {
 
 /// Implements localization logic. Use shared instance for customizing behaviour of this class.
 open class LocalizeNIB {
-    open static var instance = LocalizeNIB()
-    
-    /// String provider used for localization. Set to nil to provide default implementation that simply calls NSLocalizedString.
+    public static var instance = LocalizeNIB()
+
+    /// String provider used for localization.
+    /// Set to nil to provide default implementation that simply calls NSLocalizedString.
     open var stringProvider: LocalizedStringProvider?
-    
-    /// If set this block is called before localizing each object. If it returns true the localization will not be performed on this object. Default value is nil.
+
+    /// If set this block is called before localizing each object.
+    /// If it returns true the localization will not be performed on this object. Default value is nil.
     open var localizeAll: LocalizerBlock?
-    
+
     /// If true, each object that is not implementing Localizable protocol will be reported. Default is false
     open var debugMode: Bool
-    
+
     /// This block is called for each debug message. The default implementation simply calls print.
     open var debugBlock: ((String) -> Void) = { print($0) }
-    
+
+    /// A special string to report that some value for key is missing
+    open class var missingKeyIdentifier: String { return "!!!" }
+
     fileprivate lazy var defaultStringProvider: LocalizedStringProvider = {
         return { [weak self] string in
-            let result = NSLocalizedString(string, value: "!!!", comment: "") // will return !!! if string is not found in string table
-            if result == "!!!" {
+            /// Will return !!! if string is not found in string table
+            let result = NSLocalizedString(string, value: LocalizeNIB.missingKeyIdentifier, comment: "")
+            if result == LocalizeNIB.missingKeyIdentifier {
                 if self?.debugMode == true {
                     self?.debugBlock("Missing key '\(string)'")
                 }
@@ -54,22 +62,24 @@ open class LocalizeNIB {
             }
         }
     }()
-    
-    
+
+
     public init(debugMode: Bool = false, stringProvider: LocalizedStringProvider? = nil) {
         self.debugMode = debugMode
         self.stringProvider = stringProvider
     }
-    
-    /// Localizes all provided objects. Objects not implementing Localizable protocol are logged if debugMode is enabled. Provided context will be included in debug message.
+
+    /// Localizes all provided objects.
+    /// Objects not implementing Localizable protocol are logged if debugMode is enabled.
+    /// Provided context will be included in debug message.
     open func localize(_ objects: [AnyObject], context: String? = nil) throws {
         let stringProvider = self.stringProvider ?? defaultStringProvider
-        
+
         for obj in objects {
             if localizeAll?(obj, stringProvider) == true {
                 continue
             }
-            
+
             if let localizable = obj as? Localizable {
                 try localizable.localize(provider: stringProvider)
             } else if debugMode {
@@ -81,7 +91,7 @@ open class LocalizeNIB {
             }
         }
     }
-    
+
     /// Localizes input string with LocalizedStringProvider
     open func localize(_ string: String) -> String {
         return (stringProvider ?? defaultStringProvider)(string)
@@ -156,17 +166,17 @@ extension UITextField: Localizable {
 }
 
 extension UIButton: Localizable {
-    open func localize(provider: LocalizedStringProvider, state: UIControlState, normalTitle: String?) {
+    open func localize(provider: LocalizedStringProvider, state: UIControl.State, normalTitle: String?) {
         if let title = title(for: state), normalTitle == nil || title != normalTitle {
             setTitle(provider(title), for: state)
         }
     }
-    
+
     open func localize(provider: LocalizedStringProvider) throws {
         localize(provider: provider, state: .normal, normalTitle: nil)
-        
+
         let normalTitle = title(for: .normal)
-        
+
         localize(provider: provider, state: .disabled, normalTitle: normalTitle)
         localize(provider: provider, state: .highlighted, normalTitle: normalTitle)
         localize(provider: provider, state: .selected, normalTitle: normalTitle)
@@ -246,9 +256,9 @@ extension UIViewController: Localizable {
 // MARK: - String extension
 
 extension String {
-    
+
     public var localized: String {
         return LocalizeNIB.instance.localize(self)
     }
-    
+
 }
