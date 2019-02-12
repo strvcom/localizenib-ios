@@ -10,15 +10,28 @@ import UIKit
 
 
 /// Used for providing localized strings. Basically maps one string to another.
-public typealias LocalizedStringProvider = (String) -> String
+///
+/// - Parameter input: not localized string
+/// - Returns: localized string
+public typealias LocalizedStringProvider = (_ input: String) -> String
 
-/// Catch-all block that can localize object via provided LocalizedStringProvider and returns true
-/// if there is no need to continue with localization, false otherwise
-public typealias LocalizerBlock = (AnyObject, LocalizedStringProvider) -> Bool
+/// Catch-all block that can localize object via provided LocalizedStringProvider.
+///
+/// - Parameter object: object from storyboard to localize
+/// - Parameter provider: localization source
+/// - Returns: true if there is no need to continue with localization, false otherwise
+public typealias LocalizerBlock = (_ object: AnyObject, _ provider: LocalizedStringProvider) -> Bool
 
 /// Implement this protocol to provide localization capability.
 /// Use passed in LocalizedStringProvider to get localized strings.
 public protocol Localizable {
+
+    /// Method is called once when storyboard is created and outlets are set up.
+    /// You should localize all relevant strings for this component.
+    ///
+    /// See built-in UIKit extensions for reference.
+    ///
+    /// - Parameter provider: localization source
     func localize(provider: LocalizedStringProvider) throws
 }
 
@@ -28,6 +41,8 @@ public protocol Localizable {
 
 
 /// Implements localization logic. Use shared instance for customizing behaviour of this class.
+///
+/// By default localization uses NSLocalizedString and has debugMode disabled.
 open class LocalizeNIB {
     public static var instance = LocalizeNIB()
 
@@ -64,6 +79,11 @@ open class LocalizeNIB {
     }()
 
 
+    /// Usually you don't need a new instance of LocalizeNIB because all the UIKit extensions
+    /// use LocalizeNIB.instance field
+    ///
+    /// - Parameter debugMode: enables debug messages
+    /// - Parameter stringProvider: localization source
     public init(debugMode: Bool = false, stringProvider: LocalizedStringProvider? = nil) {
         self.debugMode = debugMode
         self.stringProvider = stringProvider
@@ -71,7 +91,9 @@ open class LocalizeNIB {
 
     /// Localizes all provided objects.
     /// Objects not implementing Localizable protocol are logged if debugMode is enabled.
-    /// Provided context will be included in debug message.
+    ///
+    /// - Parameter objects: Objects to localize by invoking Localizable.localize method.
+    /// - Parameter context: Used for debugging purposes only, included in debug message.
     open func localize(_ objects: [AnyObject], context: String? = nil) throws {
         let stringProvider = self.stringProvider ?? defaultStringProvider
 
@@ -92,7 +114,13 @@ open class LocalizeNIB {
         }
     }
 
-    /// Localizes input string with LocalizedStringProvider
+    /// Localizes input string with LocalizedStringProvider.
+    ///
+    /// Use this helper method to utilize same localization pipeline for strings
+    /// in code.
+    ///
+    /// - Parameter string: input not localized string
+    /// - Returns: localized string
     open func localize(_ string: String) -> String {
         return (stringProvider ?? defaultStringProvider)(string)
     }
